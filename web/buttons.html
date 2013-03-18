@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>Blinkers</title>
+    </head>
+    <body>
+        <p><button id="button17">Blink the 17th GPIO LED!</button></p>
+        <p><input id="inputLedNumber" type="integer" /> <button id="numberButton">Choose &amp; blink me!</button></p>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#button17").click(function () {
+                    $(this).fadeOut('fast', function() {
+                        $.ajax({
+                            url: "/blink/17"
+                        });
+                        $(this).fadeIn('fast');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

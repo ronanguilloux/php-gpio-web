@@ -21,7 +21,8 @@ $app->get('/blink/{id}', function ($id) use ($app) {
 
 
 $app->get('/', function () use ($app) {
-    return 'Home';
+    require_once __DIR__.'/buttons.html'; //TODO
+    return "";
 });
 
 
