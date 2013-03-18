@@ -1,7 +1,7 @@
 php-gpio-web
 ============
 
-Website integration example of the php-gpio lib
+Website integration example of the [php-gpio](https://github.com/ronanguilloux/php-gpio) lib
 
 
 Installation
@@ -17,14 +17,16 @@ Just run these three commands to install it (`curl` needed):
     $ php composer.phar create-project --stability='dev' ronanguilloux/php-gpio-web
 ```
 
-Then authorize the blinker to play with the kernel modules:
 
+Blink with style
+----------------
+
+Fetch the ready-to-use blinker file inside your project
 
 ``` bash
     $ cd php-gpio-web
     $ cp vendor/ronanguilloux/php-gpio/blinker .
 ```
-
 
 To run this blinker with sudo permissions but without password inputting,
 just allow your `www-data` or your `pi` user to run the blinker script.
