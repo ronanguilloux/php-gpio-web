@@ -1,0 +1,40 @@
+{
+    "name": "ronanguilloux/php-gpio-web",
+    "type": "web app",
+    "description": "Website integration example of the php-gpio lib",
+    "keywords": [
+        "GPIO",
+    "hardware",
+    "chipset",
+    "input",
+    "output",
+    "port",
+    "pin",
+    "chip",
+    "sensors",
+    "raspberry",
+    "raspberry pi",
+    "web",
+    "web app",
+    "website"
+        ],
+    "homepage": "https://github.com/ronanguilloux/php-gpio-web",
+    "license": "MIT",
+    "authors": [
+    {
+        "name": "Ronan Guilloux",
+        "email": "ronan.guilloux@gmail.com"
+    }
+    ],
+        "require": {
+            "php": ">=5.3.0",
+            "silex/silex": "1.0.*@dev",
+            "ronanguilloux/php-gpio": "master-dev"
+
+        },
+        "autoload": {
+            "psr-0": {
+                "PhpGpioWeb": "src/"
+            }
+        }
+}
