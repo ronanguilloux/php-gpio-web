@@ -4,6 +4,22 @@ php-gpio-web
 Website integration example of the [php-gpio](https://github.com/ronanguilloux/php-gpio) lib
 
 
+
+Hardware prerequisites
+----------------------
+
+After having installed & wired your LED & resistor on a breadboard, 
+add appropriate modules from the Linux Kernel:
+
+For LEDs, enable the gpio module :
+
+``` bash
+    $ sudo modprobe w1-gpio
+```
+
+([see a complete circuit diagram for a single LED + explanations & schemas here](https://projects.drogon.net/raspberry-pi/gpio-examples/tux-crossing/gpio-examples-1-a-single-led/))
+
+
 Installation
 ------------
 
