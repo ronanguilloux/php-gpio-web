@@ -9,19 +9,21 @@
  */
 
 require_once __DIR__.'/../vendor/autoload.php';
+use Symfony\Component\HttpFoundation\Response;
 
 use PhpGpio\Gpio;
 
 $app = new Silex\Application();
 
 $app->get('/blink/{id}', function ($id) use ($app) {
-    $result = exec('sudo /usr/bin/php ../blinker 17 20000');
-    return $result;
+    $msg = exec("sudo /usr/bin/php ../blinker $id 90000");
+    $code = ("" === trim($msg)) ? 200 : 500;
+    return new Response($msg, $code);
 });
 
 
 $app->get('/', function () use ($app) {
-    require_once __DIR__.'/buttons.html'; //TODO
+    require_once __DIR__.'/buttons.html';
     return "";
 });
 

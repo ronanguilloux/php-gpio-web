@@ -1,21 +1,40 @@
 <html>
     <head>
         <title>Blinkers</title>
+        <style>
+            input[type=number] {
+                width: 3em;
+            }
+        </style>
     </head>
     <body>
-        <p><button id="button17">Blink the 17th GPIO LED!</button></p>
-        <p><input id="inputLedNumber" type="integer" /> <button id="numberButton">Choose &amp; blink me!</button></p>
+        <p>GPIO: <input type="number" min="1" max="26" value="17" /> <button id="numberButton">Blink!</button><span></span></p>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $("#button17").click(function () {
+                $("button").click(function () {
+                    $('span').text('');
                     $(this).fadeOut('fast', function() {
+                        var el = this;
                         $.ajax({
-                            url: "/blink/17"
+                            url: "/blink/" + $('input').val(),
+                            statusCode: {
+                                500: function(data, textStatus, jqXHR) {
+                                    showResult(data, textStatus, jqXHR, el);
+                                }
+                                ,200: function(data, textStatus, jqXHR) {
+                                    showResult(data, textStatus, jqXHR, el);
+                                }
+                            }
                         });
-                        $(this).fadeIn('fast');
                     });
                 });
+                var showResult = function (data, textStatus, jqXHR, el) {
+                    $(el).fadeIn('fast');
+                    if(200 !== jqXHR.status) {
+                        $('span').text(jqXHR + ': ' + data.responseText);
+                    }
+                }
             });
         </script>
     </body>
