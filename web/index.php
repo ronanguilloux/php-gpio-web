@@ -16,7 +16,7 @@ use PhpGpio\Gpio;
 $app = new Silex\Application();
 
 $app->get('/blink/{id}', function ($id) use ($app) {
-    $msg = exec("sudo /usr/bin/php ../blinker $id 90000");
+    $msg = exec("sudo -t /usr/bin/php ../blinker $id 90000");
     $code = ("" === trim($msg)) ? 200 : 500;
     return new Response($msg, $code);
 });

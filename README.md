@@ -8,13 +8,13 @@ Website integration example of the [php-gpio](https://github.com/ronanguilloux/p
 Hardware prerequisites
 ----------------------
 
-After having installed & wired your LED & resistor on a breadboard, 
+After having installed & wired your LED & resistor on a breadboard,
 add appropriate modules from the Linux Kernel:
 
 For LEDs, enable the gpio module :
 
 ``` bash
-    $ sudo modprobe w1-gpio
+$ sudo modprobe w1-gpio
 ```
 
 ([see a complete circuit diagram for a single LED + explanations & schemas here](https://projects.drogon.net/raspberry-pi/gpio-examples/tux-crossing/gpio-examples-1-a-single-led/))
@@ -25,13 +25,22 @@ Installation
 
 The recommended way to install php-gpio-web is through [composer](http://getcomposer.org).
 
-Just run these three commands to install it (`curl` needed):
+Install a webserver, git, php5 & curl:
 
 ``` bash
-    $ sudo apt-get install git
-    $ wget http://getcomposer.org/composer.phar
-    $ php composer.phar create-project --stability='dev' ronanguilloux/php-gpio-web
+$ sudo apt-get install git php5 apache2 libapache2-mod-php5 curl
 ```
+
+Clone this repo & install vendors (dependencies)
+
+``` bash
+$ git clone git://github.com/ronanguilloux/php-gpio-web.git
+$ cd php-gpio-web
+$ curl -sS https://getcomposer.org/installer | php
+$ php composer.phar install
+```
+
+Configure apache2 vhost
 
 
 Blink with style
@@ -40,8 +49,9 @@ Blink with style
 Fetch the ready-to-use blinker file inside your project
 
 ``` bash
-    $ cd php-gpio-web
-    $ cp vendor/ronanguilloux/php-gpio/blinker .
+$ cd php-gpio-web
+$ cp vendor/ronanguilloux/php-gpio/blinker .
+$ chmod a+x blinker
 ```
 
 To run this blinker with sudo permissions but without password inputting,
@@ -52,24 +62,28 @@ and your webserver application needs only one php file to be specified in /etc/s
 Edit your `/etc/sudoers` file:
 
 ``` bash
-    $ sudo visudo
+$ sudo visudo
 ```
 
 Then add this two lines in your `/etc/sudoers` file :
 
 ```
-    www-data ALL=NOPASSWD: /path/to/blinker
-    myCurrentLinuxLogin ALL=NOPASSWD: /path/to/blinker
+    www-data ALL=NOPASSWD:/path/to/the/blinker
 ```
 
-Just replace myCurrentLinuxLogin by your own linux user login
-The blinker file provided is ready to use the API.
+Replace /pat/to/the/blinker with your project path
+
+The blinker file provided is ready to use the API. You do not need to install apache2-suexec nor suPHP.
 
 
 Run it!
 -------
 
+Via the PHP built-in web server:
+
 ``` bash
-    $ php -S "`hostname -I`:8080" -t web/
+$ php -S "`hostname -I`:8080" -t web/
 ```
+
+Via Apache2: cf. the apache2.conf example file
 
