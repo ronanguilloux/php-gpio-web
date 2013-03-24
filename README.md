@@ -43,8 +43,8 @@ $ php composer.phar install
 Configure apache2 vhost
 
 
-Blink with style
-----------------
+Permission to blink
+-------------------
 
 Fetch the ready-to-use blinker file inside your project
 
@@ -68,7 +68,7 @@ $ sudo visudo
 Then add this two lines in your `/etc/sudoers` file :
 
 ```
-    www-data ALL=NOPASSWD:/path/to/the/blinker
+www-data ALL=NOPASSWD: /path/to/the/blinker
 ```
 
 Replace /pat/to/the/blinker with your project path
@@ -79,11 +79,11 @@ The blinker file provided is ready to use the API. You do not need to install ap
 Run it!
 -------
 
-Via the PHP built-in web server:
+Via the *PHP built-in web server*:
 
 ``` bash
 $ php -S "`hostname -I`:8080" -t web/
 ```
 
-Via Apache2: cf. the apache2.conf example file
+Via *Apache2*: cf. the [apache2.conf](https://github.com/ronanguilloux/php-gpio-web/blob/master/apache2.conf) example file
 
