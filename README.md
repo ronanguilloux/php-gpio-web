@@ -1,7 +1,8 @@
 php-gpio-web
 ============
 
-Website integration example of the [php-gpio](https://github.com/ronanguilloux/php-gpio) lib
+Website integration example of the [php-gpio](https://github.com/ronanguilloux/php-gpio) lib,
+allowing your php-based website to blink LEDs.
 
 
 
