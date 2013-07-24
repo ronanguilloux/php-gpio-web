@@ -20,6 +20,12 @@ $ sudo modprobe w1-gpio
 
 ([see a complete circuit diagram for a single LED + explanations & schemas here](https://projects.drogon.net/raspberry-pi/gpio-examples/tux-crossing/gpio-examples-1-a-single-led/))
 
+To load such kernel module automatically at boot time, edit the `/etc/modules` file & add this line:
+
+```
+w1-gpio
+```
+
 
 Installation
 ------------
